@@ -1,0 +1,5 @@
+com\uscis\news\api\impl\BingNewsSearchApiImpl.class
+com\uscis\news\api\impl\GoogleNewsSearchApiImpl.class
+com\uscis\news\api\NewsSearchApi.class
+com\uscis\news\constant\Constant.class
+com\uscis\news\config\Config.class
