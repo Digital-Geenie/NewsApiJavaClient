@@ -9,18 +9,22 @@ import com.uscis.news.api.impl.BingNewsSearchApiImpl;
 import com.uscis.news.api.impl.GoogleNewsSearchApiImpl;
 import com.uscis.news.config.Config;
 
-/**
- * Hello world!
- *
- */
-public class App {
+
+public class NewsSearch {
 	
-	static NewsSearchApi newsApi = null;
-	static Config config = new Config();
+	NewsSearchApi newsApi;
+	Config config;
+	
+	public NewsSearch() {
+	    this.newsApi = null;
+		this.config = new Config();
+	}
 
-	public static void main(String[] args) {
+	public String newsSearch(String searchQuery, String newsSource) {
 
-		switch (args[0]) {
+		String respone = null;
+		
+		switch (newsSource) {
 		case "bing":
 			newsApi = new BingNewsSearchApiImpl(config);
 			break;
@@ -35,12 +39,13 @@ public class App {
 		
 		String result;
 		try {
-			result = newsApi.searchNews(args[1]);
+			result = newsApi.searchNews(searchQuery);
 			System.out.println("\nJSON Response:\n");
-			System.out.println(prettify(result));
+			respone = prettify(result);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+		return respone;
 	}
 
 	// pretty-printer for JSON; uses GSON parser to parse and re-serialize
